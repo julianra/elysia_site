@@ -104,3 +104,72 @@ footer {
   text-align: center;
   border-top: 1px solid var(--accent-soft);
 }
+.module {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--accent-soft);
+  background: rgba(255,255,255,0.02);
+
+  height: 240px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  padding: 1.4rem;
+}
+
+/* Achtergrondlaag */
+.module-bg {
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 75%;
+  opacity: 1;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+}
+
+/* Donkere overlay voor leesbaarheid */
+.module::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 14, 20, 0.85);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 1;
+}
+
+
+/* Tekst boven alles */
+.module h3,
+.module p {
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.module:hover .module-bg {
+  opacity: 0.18;
+  transform: scale(0.5);
+}
+
+.module:hover::after {
+  opacity: 1;
+  
+}
+
+.module:hover h3,
+.module:hover p {
+  opacity: 1;
+  transform: translateY(0);
+  transform: scale(1);
+}
+
+.module-shield .module-bg {
+  background-image: url("assets/modules/logos/shield.png");
+}
